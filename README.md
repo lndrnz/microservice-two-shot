@@ -31,7 +31,7 @@ x--- Pulling the location from the wardrobe microservice using polling
 x-- get a list of hats
 x-- create a new hat
 x -- delete a hat
-- react component to show a list of all hats and their details
+x - react component to show a list of all hats and their details
 - react component to show a form to create new hat
 - provide a way to delete a hat
 -- possible way: grab the list of hats, and then choose one, and then when you "submit", it deletes it

@@ -8,7 +8,9 @@ function HatList(props) {
               <th>Fabric</th>
               <th>Style Name</th>
               <th>Color</th>
-              <th>Location</th>
+              <th>Closet</th>
+              <th>Section</th>
+              <th>Shelf</th>
             </tr>
           </thead>
           <tbody>
@@ -20,6 +22,8 @@ function HatList(props) {
                   <td>{ hat.style_name }</td>
                   <td>{ hat.color }</td>
                   <td>{ hat.location.closet_name }</td>
+                  <td>{ hat.location.section_number }</td>
+                  <td>{ hat.location.shelf_number }</td>
                 </tr>
               );
             })}
