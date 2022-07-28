@@ -12,7 +12,7 @@ class LocationVOEncoder(ModelEncoder):
     model = LocationVO
     properties = ["closet_name", "section_number", "shelf_number"]
 
-class HatGetEncoder(ModelEncoder):
+class HatDetailEncoder(ModelEncoder):
     model = Hat
     properties = [
         "name",
@@ -22,6 +22,9 @@ class HatGetEncoder(ModelEncoder):
         "picture_url",
         "location",
     ]
+    encoders = {
+        "location": LocationVOEncoder(),
+    }
 
 
 class HatEncoder(ModelEncoder):
@@ -78,3 +81,28 @@ def api_hat(request, pk):
     if request.method == "DELETE":
         count, _ = Hat.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
+    elif request.method == "GET":
+        hat = Hat.objects.get(id=pk)
+        return JsonResponse(
+            hat,
+            encoder=HatDetailEncoder,
+            safe=False,
+        )
+    else: # PUT
+        content = json.loads(request.body)
+        try:
+            if "location" in content:
+                location = LocationVO.objects.get(import_href=content["location"])
+                content["location"] = location
+        except LocationVO.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid location vo"},
+                status=400,
+            )
+        Hat.objects.filter(id=pk).update(**content)
+        hat = Hat.objects.get(id=pk)
+        return JsonResponse(
+            hat,
+            encoder=HatDetailEncoder,
+            safe=False,
+        )
