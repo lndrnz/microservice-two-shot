@@ -1,6 +1,11 @@
 function HatList(props) {
+    if (props.hats === undefined) {
+        return null;
+      }
+
     return (
         <>
+        <h1>List of Hats</h1>
         <table className="table table-striped">
           <thead>
             <tr>
