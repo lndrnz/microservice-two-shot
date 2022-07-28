@@ -129,7 +129,7 @@ class HatForm extends React.Component {
                             {this.state.locations.map(location => {
                                 return (
                                     <option key={location.href} value={location.href}>
-                                    {location.closet_name}
+                                    {location.closet_name} + {location.section_number} / {location.shelf_number}
                                     </option>
                                 )
                             })}
