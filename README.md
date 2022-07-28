@@ -9,9 +9,9 @@ Team:
 
 ## Shoes microservice
 
-- Make model with shoes.
--- manufacturer, model name, color, picture url, and bin in the wardrobe where it exists
---- Pulling the bin from the wardrobe microservice using polling
+x- Make model with shoes.
+x-- manufacturer, model name, color, picture url, and bin in the wardrobe where it exists
+x --- Pulling the bin from the wardrobe microservice using polling
 - Restful API
 -- get list of shoes
 -- create new shoe
