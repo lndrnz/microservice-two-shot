@@ -11,6 +11,7 @@ function HatList(props) {
               <th>Closet</th>
               <th>Section</th>
               <th>Shelf</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -24,6 +25,7 @@ function HatList(props) {
                   <td>{ hat.location.closet_name }</td>
                   <td>{ hat.location.section_number }</td>
                   <td>{ hat.location.shelf_number }</td>
+                  <td><button className="btn btn-danger" onClick={() => props.deleteHat(hat)}>Delete</button></td>
                 </tr>
               );
             })}

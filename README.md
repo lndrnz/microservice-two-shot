@@ -32,7 +32,7 @@ x-- get a list of hats
 x-- create a new hat
 x -- delete a hat
 x - react component to show a list of all hats and their details
-- react component to show a form to create new hat
-- provide a way to delete a hat
--- possible way: grab the list of hats, and then choose one, and then when you "submit", it deletes it
-- route nav links to component
+x - react component to show a form to create new hat
+x - provide a way to delete a hat
+x -- possible way: grab the list of hats, and then choose one, and then when you "submit", it deletes it
+x - route nav links to component
