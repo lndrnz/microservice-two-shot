@@ -4,9 +4,25 @@ from django.views.decorators.http import require_http_methods
 import json
 
 from common.json import ModelEncoder
-from .models import Hat
+from .models import Hat, LocationVO
 
 # Create your views here.
+
+class LocationVOEncoder(ModelEncoder):
+    model = LocationVO
+    properties = ["closet_name", "section_number", "shelf_number"]
+
+class HatGetEncoder(ModelEncoder):
+    model = Hat
+    properties = [
+        "name",
+        "fabric",
+        "style_name",
+        "color",
+        "picture_url",
+        "location",
+    ]
+
 
 class HatEncoder(ModelEncoder):
     model = Hat
@@ -18,19 +34,39 @@ class HatEncoder(ModelEncoder):
         "picture_url",
         "location",
     ]
+    encoders = {
+        "location": LocationVOEncoder(),
+    }
 
 @require_http_methods(["GET", "POST"])
 def api_hats(request):
     if request.method == "GET":
         # show all hats
         hats = Hat.objects.all()
+        print("hats all", hats)
+        print("type", type(hats))
         return JsonResponse(
             {"hats": hats},
             encoder=HatEncoder,
         )
     else: # POST
         content = json.loads(request.body)
+        print("content", content)
+        try:
+            if "location" in content:
+                real_location = content["location"]
+                location = LocationVO.objects.get(closet_name=real_location)
+                content["location"] = location
+            else:
+                content["location"] = None
+        except LocationVO.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid location vo"},
+                status=400,
+            )
+
         hat = Hat.objects.create(**content)
+        print("hat object type", type(hat))
         return JsonResponse(
             hat,
             encoder=HatEncoder,
