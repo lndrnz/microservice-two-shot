@@ -55,7 +55,7 @@ def api_hats(request):
         try:
             if "location" in content:
                 real_location = content["location"]
-                location = LocationVO.objects.get(closet_name=real_location)
+                location = LocationVO.objects.get(import_href=real_location)               
                 content["location"] = location
             else:
                 content["location"] = None
@@ -75,4 +75,6 @@ def api_hats(request):
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_hat(request, pk):
-    pass
+    if request.method == "DELETE":
+        count, _ = Hat.objects.filter(id=pk).delete()
+        return JsonResponse({"deleted": count > 0})

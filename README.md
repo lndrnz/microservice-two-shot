@@ -24,13 +24,13 @@ Team:
 
 ## Hats microservice
 
-- Make model with hats
--- fabric, style name, color, picture url, location in wardrobe where it exists
---- Pulling the location from the wardrobe microservice using polling
+x- Make model with hats
+x-- fabric, style name, color, picture url, location in wardrobe where it exists
+x--- Pulling the location from the wardrobe microservice using polling
 - Restful API
--- get a list of hats
--- create a new hat
--- delete a hat
+x-- get a list of hats
+x-- create a new hat
+x -- delete a hat
 - react component to show a list of all hats and their details
 - react component to show a form to create new hat
 - provide a way to delete a hat

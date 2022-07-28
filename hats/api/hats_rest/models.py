@@ -5,8 +5,8 @@ from django.urls import reverse
 
 class LocationVO(models.Model):
     closet_name = models.CharField(max_length=100)
-    section_number = models.PositiveSmallIntegerField(default=1)
-    shelf_number = models.PositiveSmallIntegerField(default=1)
+    section_number = models.PositiveSmallIntegerField()
+    shelf_number = models.PositiveSmallIntegerField()
     import_href = models.CharField(max_length=200, unique=True, null=True)
 
 class Hat(models.Model):
